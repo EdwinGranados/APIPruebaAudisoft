@@ -78,7 +78,7 @@ namespace PruebaTecnicaAudisoft.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(estudiante);
         }
 
         // POST: api/Estudiantes
@@ -113,7 +113,7 @@ namespace PruebaTecnicaAudisoft.Controllers
             _context.Estudiante.Remove(estudiante);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(estudiante);
         }
 
         private bool EstudianteExists(int id)

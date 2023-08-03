@@ -55,7 +55,7 @@ namespace PruebaTecnicaAudisoft.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutNota(int id, Nota nota)
         {
-            if (id != nota.Id)
+            if (id != nota.id)
             {
                 return BadRequest();
             }
@@ -78,7 +78,7 @@ namespace PruebaTecnicaAudisoft.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(nota);
         }
 
         // POST: api/Notas
@@ -93,7 +93,7 @@ namespace PruebaTecnicaAudisoft.Controllers
             _context.Nota.Add(nota);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetNota", new { id = nota.Id }, nota);
+            return CreatedAtAction("GetNota", new { id = nota.id }, nota);
         }
 
         // DELETE: api/Notas/5
@@ -113,12 +113,12 @@ namespace PruebaTecnicaAudisoft.Controllers
             _context.Nota.Remove(nota);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(nota);
         }
 
         private bool NotaExists(int id)
         {
-            return (_context.Nota?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Nota?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

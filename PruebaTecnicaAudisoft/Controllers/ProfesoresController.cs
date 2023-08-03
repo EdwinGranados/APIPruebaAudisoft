@@ -12,11 +12,11 @@ namespace PruebaTecnicaAudisoft.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfesorsController : ControllerBase
+    public class ProfesoresController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ProfesorsController(ApplicationDbContext context)
+        public ProfesoresController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -78,7 +78,7 @@ namespace PruebaTecnicaAudisoft.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(profesor);
         }
 
         // POST: api/Profesors
@@ -113,7 +113,7 @@ namespace PruebaTecnicaAudisoft.Controllers
             _context.Profesor.Remove(profesor);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(profesor);
         }
 
         private bool ProfesorExists(int id)

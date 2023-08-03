@@ -4,7 +4,7 @@
 
 namespace PruebaTecnicaAudisoft.Migrations
 {
-    public partial class initial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,39 +38,39 @@ namespace PruebaTecnicaAudisoft.Migrations
                 name: "Nota",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    idProfesorid = table.Column<int>(type: "int", nullable: false),
-                    idEstudianteid = table.Column<int>(type: "int", nullable: false),
+                    idProfesor = table.Column<int>(type: "int", nullable: false),
+                    idEstudiante = table.Column<int>(type: "int", nullable: false),
                     valor = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Nota", x => x.Id);
+                    table.PrimaryKey("PK_Nota", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Nota_Estudiante_idEstudianteid",
-                        column: x => x.idEstudianteid,
+                        name: "FK_Nota_Estudiante_idEstudiante",
+                        column: x => x.idEstudiante,
                         principalTable: "Estudiante",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Nota_Profesor_idProfesorid",
-                        column: x => x.idProfesorid,
+                        name: "FK_Nota_Profesor_idProfesor",
+                        column: x => x.idProfesor,
                         principalTable: "Profesor",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nota_idEstudianteid",
+                name: "IX_Nota_idEstudiante",
                 table: "Nota",
-                column: "idEstudianteid");
+                column: "idEstudiante");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nota_idProfesorid",
+                name: "IX_Nota_idProfesor",
                 table: "Nota",
-                column: "idProfesorid");
+                column: "idProfesor");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

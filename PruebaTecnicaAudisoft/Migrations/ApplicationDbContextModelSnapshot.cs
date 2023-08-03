@@ -16,7 +16,7 @@ namespace PruebaTecnicaAudisoft.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -40,16 +40,16 @@ namespace PruebaTecnicaAudisoft.Migrations
 
             modelBuilder.Entity("PruebaTecnicaAudisoft.Models.Nota", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("idEstudianteid")
+                    b.Property<int>("idEstudiante")
                         .HasColumnType("int");
 
-                    b.Property<int>("idProfesorid")
+                    b.Property<int>("idProfesor")
                         .HasColumnType("int");
 
                     b.Property<string>("nombre")
@@ -59,11 +59,11 @@ namespace PruebaTecnicaAudisoft.Migrations
                     b.Property<int>("valor")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("idEstudianteid");
+                    b.HasIndex("idEstudiante");
 
-                    b.HasIndex("idProfesorid");
+                    b.HasIndex("idProfesor");
 
                     b.ToTable("Nota");
                 });
@@ -87,21 +87,21 @@ namespace PruebaTecnicaAudisoft.Migrations
 
             modelBuilder.Entity("PruebaTecnicaAudisoft.Models.Nota", b =>
                 {
-                    b.HasOne("PruebaTecnicaAudisoft.Models.Estudiante", "idEstudiante")
+                    b.HasOne("PruebaTecnicaAudisoft.Models.Estudiante", "Estudiante")
                         .WithMany("Notas")
-                        .HasForeignKey("idEstudianteid")
+                        .HasForeignKey("idEstudiante")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PruebaTecnicaAudisoft.Models.Profesor", "idProfesor")
+                    b.HasOne("PruebaTecnicaAudisoft.Models.Profesor", "Profesor")
                         .WithMany("Notas")
-                        .HasForeignKey("idProfesorid")
+                        .HasForeignKey("idProfesor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("idEstudiante");
+                    b.Navigation("Estudiante");
 
-                    b.Navigation("idProfesor");
+                    b.Navigation("Profesor");
                 });
 
             modelBuilder.Entity("PruebaTecnicaAudisoft.Models.Estudiante", b =>
